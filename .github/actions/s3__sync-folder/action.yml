@@ -1,5 +1,5 @@
-name: "s3__deploy-mkdocs"
-description: "Build MkDocs site and deploy to AWS S3 Bucket"
+name: "s3__sync-folder"
+description: "sync local folder to s3"
 
 inputs:
   aws-region:
@@ -8,16 +8,14 @@ inputs:
   s3-bucket:
     required: true
     description: "AWS S3 bucket name"
+  folder:
+    required: true
+    description: "Folder to Sync"
 
 runs:
   using: "composite"
   steps:
     - uses: actions/checkout@v4
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.9
 
     - name: Configure AWS CLI Credentials
       uses: aws-actions/configure-aws-credentials@v4
@@ -28,4 +26,4 @@ runs:
 
     - name: Deploy to S3
       shell: bash
-      run: aws s3 sync ./files/ s3://${{ inputs.s3-bucket }}/ --delete
+      run: aws s3 sync ./${{ inputs.folder }}/ s3://${{ inputs.s3-bucket }}/ --delete
