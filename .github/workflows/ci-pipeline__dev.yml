@@ -13,7 +13,7 @@ env:
 
 jobs:
   increment-tag:
-    name: Increment Tag - Main
+    name: Increment Tag - Dev
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
