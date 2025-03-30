@@ -22,12 +22,13 @@ jobs:
         with:
           release_type: ${{ env.RELEASE_TYPE }}
 
-  deploy-mkdocs:
+  publish-to-s3:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy MkDocs Site to S3
-        uses: ./.github/actions/s3__deploy-mkdocs
+      - name: Sync files folder to S3 Bucket
+        uses: ./.github/actions/s3__sync-folder
         with:
           aws-region: "eu-west-2"
-          s3-bucket: "749670524505--docs-diniscruz-ai"
+          folder    : "./files/"
+          s3-bucket : "749670524505--files-diniscruz-ai"
