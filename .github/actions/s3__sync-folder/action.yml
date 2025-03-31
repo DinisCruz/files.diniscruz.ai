@@ -8,9 +8,12 @@ inputs:
   s3-bucket:
     required: true
     description: "AWS S3 bucket name"
-  folder:
+  source_folder:
     required: true
-    description: "Folder to Sync"
+    description: "Local/Source folder to sync with the target folder in S3"
+  target_folder:
+    required: true
+    description: "Target folder to copy the files in S3"
 
 runs:
   using: "composite"
@@ -26,4 +29,4 @@ runs:
 
     - name: Deploy to S3
       shell: bash
-      run: aws s3 sync ./${{ inputs.folder }}/ s3://${{ inputs.s3-bucket }}/ --delete
+      run: aws s3 sync ./${{ inputs.source_folder }}/ s3://${{ inputs.s3-bucket }}/${{ inputs.target_folder }} --delete
