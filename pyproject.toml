@@ -3,7 +3,7 @@ package-mode = false
 
 [project]
 name = "files-diniscruz-ai"
-version = "v0.1.6"
+version = "v0.1.7"
 description = "Dinis Cruz - Files"
 readme = "README.md"
 authors = [{name = "Dinis Cruz", email = "dinis.cruz@owasp.org"}]
